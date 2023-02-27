@@ -43,23 +43,23 @@ def upload():
 
 
     # Validate file upload on submit
-    if form.validate_on_submit():
+#    if form.validate_on_submit():
         # Get file data and save to your uploads folder
-        username = form.username.data
-        password = form.password.data
+#        username = form.username.data
+#        password = form.password.data
 
-        user = UserProfile.query.filter_by(username=username).first()
+#        user = UserProfile.query.filter_by(username=username).first()
 
-        if user and check_password_hash(user.password, password):
+#        if user and check_password_hash(user.password, password):
             # Log the user in and go to home page if the password is right
-            login_user(user)
-            flash('Logged in.', 'success')
-            return redirect(url_for('upload'))
-        else:
+#            login_user(user)
+#            flash('Logged in.', 'success')
+#            return redirect(url_for('upload'))
+#        else:
             #do not log in
-            flash('Invalid username or password', 'danger')
+#            flash('Invalid username or password', 'danger')
 
-    return render_template('upload.html')
+#    return render_template('upload.html')
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -75,14 +75,14 @@ def login():
 
 
         # Using your model, query database for a user based on the username
-        user = db.session.execute(db.select(UserProfile).filter_by(username=username)).scalar()
+        user = UserProfile.query.filter_by(username=username).first()
     
         # and password submitted. Remember you need to compare the password hash.
         if user is not None and check_password_hash(user.password, password):
-            remember_me = False
+#            remember_me = False
 
-            if 'remember_me' in request.form:
-                remember_me = True
+#            if 'remember_me' in request.form:
+#                remember_me = True
         # You will need to import the appropriate function to do so.
         # Then store the result of that query to a `user` variable so it can be
         # passed to the login_user() method below.
