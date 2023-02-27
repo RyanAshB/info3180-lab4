@@ -93,6 +93,7 @@ def login():
 
             return redirect(url_for('upload'))  # The user should be redirected to the upload form instead
         
+        
         flash('Invalid username or password', 'danger')
 
         
